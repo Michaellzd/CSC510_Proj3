@@ -1,5 +1,6 @@
 import subprocess
 
+
 def get_git_status(repo_path='.'):
     """
     Get the Git status of a local repository.
