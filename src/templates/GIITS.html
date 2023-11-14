@@ -13,39 +13,72 @@ this file. If not, please write to: gits3.1project@gmail.com
   <title>GITS Homepage</title>
 
   <style>
-    body {
-      background-color: #666666;
-      color: white;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      margin-top: 20px;
-    }
+  body {
+    background-color: #f5f5f5; /* Light gray background color */
+    color: #333; /* Dark text color */
+    font-family: 'Arial', sans-serif; /* Use a readable font */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    margin-top: 20px;
+  }
 
-    h1 {
-      font-size: 24px;
-    }
+  h1 {
+    font-size: 28px;
+    color: #007bff; /* Blue heading color */
+    margin-bottom: 20px;
+  }
 
-    #form-container-create,
-    #form-container-clone,
-    #form-container-fork,
-    #form-container-check_branch,
-    #form-container-commit_count,
-    #form-container-merge_branch,
-    #form-container-commit_diff,
-    #form-container-get_branches,
-    #form-container-create_branch,
-    #form-container-diff,
-    #form-container-push,
-    #form-container-delete {
-      display: none;
-    }
+  #form-container-create,
+  #form-container-clone,
+  #form-container-fork,
+  #form-container-delete,
+  #form-container-check_branch,
+  #form-container-get_branches,
+  #form-container-commit_count,
+  #form-container-merge_branch,
+  #form-container-commit_diff,
+  #form-container-create_branch,
+  #form-container-diff,
+  #form-container-push {
+    display: none;
+  }
 
-  </style>
+  /* Style form elements */
+  form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555; /* Dark gray label color */
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px;
+  }
+
+  input[type="submit"] {
+    background-color: #007bff; /* Blue submit button color */
+    color: #fff; /* White text color */
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+</style>
+
 
 </head>
 
