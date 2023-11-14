@@ -135,7 +135,7 @@ def get_commit_count():
 def get_git_status_route():
     try:
         repo_path = request.form.get('repoPath', '.')  # Default to the current directory if not provided
-        status_info = gits_status.get_git_status(repo_path)
+        status_info = gits_status.get_git_status()
         return f"Git Status:\n{status_info}"
     except Exception as e:
         return f"Error: {str(e)}"

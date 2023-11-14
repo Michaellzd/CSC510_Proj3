@@ -7,8 +7,8 @@ def get_git_status(repo_path='.'):
 
     repo_path: Path to the Git repository (default is the current directory).
     """
-    command = ['git', 'status', '--porcelain']
-    result = subprocess.run(command, cwd=repo_path, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    command = ['git', 'status']
+    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     if result.returncode == 0:
         return result.stdout.decode().strip()
