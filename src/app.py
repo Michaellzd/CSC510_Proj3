@@ -21,13 +21,14 @@ import gits_diff
 import gits_createbranch
 import gits_commit
 import gits_push
+import gits_status
 
 import yaml
 import os
 
 
 # replace this with your token
-token = "YourTokenGoesHere"
+token = "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"
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -128,6 +129,16 @@ def get_commit_count():
     repo_url = request.form['repoURL']
     result = gits_countcommit.count_commits_in_github_repo(repo_url)
     return f"The total number of commits in the given repo is {result}"
+
+
+@app.route('/git_status', methods=['POST'])
+def get_git_status_route():
+    try:
+        repo_path = request.form.get('repoPath', '.')  # Default to the current directory if not provided
+        status_info = gits_status.get_git_status(repo_path)
+        return f"Git Status:\n{status_info}"
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 
 @app.route('/merge_branch', methods=['POST'])
