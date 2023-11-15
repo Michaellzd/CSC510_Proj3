@@ -29,7 +29,7 @@ import os
 
 
 # replace this with your token
-token = "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"
+global token
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -37,6 +37,13 @@ app = Flask(__name__, static_url_path='/static')
 @app.route('/')
 def index():
     return render_template('GIITS.html')
+
+@app.route('/token_selection', methods=['POST'])
+def token_selection():
+    token = request.form.get('token')
+    print(request.form)
+    
+    return f'Selected environment: {token}'
 
 
 @app.route('/create_repo', methods=['POST'])
@@ -198,4 +205,5 @@ def diff():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5020)
+    app.run(debug=True, port=5021)
+    

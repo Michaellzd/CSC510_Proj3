@@ -9,353 +9,802 @@ this file. If not, please write to: gits3.1project@gmail.com
 
 <!DOCTYPE html>
 <html>
-<head>
-  <title>GITS Homepage</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <head>
+    <title>GITS Homepage</title>
+    
+    <style>
+      body {
+        background-color: #f5f5f5;
+        color: #333; 
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        margin-top: 20px;
+      }
+      
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      
+      .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 80%;
+        max-width: 800px;
+        max-height: 80vh; 
+        overflow: auto;
+        box-sizing: border-box;
+      }
+      
+      .flexContainer {
+        display: flex;
+      }
+      
+      .close-btn {
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+           
+      .title {
+        font-size: 20px;
+        font-weight: bolder;
+        margin-bottom: 30px;
+      }
+      
+      h1 {
+        font-size: 28px;
+        color: #007bff; 
+        margin-bottom: 20px;
+      }
+      
+      #form-container-create,
+      #form-container-clone,
+      #form-container-fork,
+      #form-container-delete,
+      #form-container-check_branch,
+      #form-container-get_branches,
+      #form-container-commit_count,
+      #form-container-merge_branch,
+      #form-container-commit_diff,
+      #form-container-create_branch,
+      #form-container-diff,
+      #form-container-status,
+      #form-container-log,
+      #form-container-push {
+        display: none;
+      }
+      
+      form {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      
+      label {
+        display: block;
+        margin-top: 5px;
+        padding-left: 50px;
+        padding-right: 50px;
+        margin-bottom: 5px;
+        color: #555; 
+      }
+      
+      input {
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      
+      input[type="submit"] {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid #007aff;
+        border-radius: 8px;
+        color: #007aff; 
+        background-color: transparent;
+        transition: background-color 0.3s, color 0.3s;
+      
+      }
+      
+      input[type="submit"]:hover {        
+        background-color: #007aff;
+        color: #fff;
+      }
+      
+      #leftColumn {
+        width: 30%;
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      
+      #rightColumn {
+        flex: 1;
+        padding: 20px;
+        display: flex; 
+        flex-direction: column; 
+      }
 
-  <style>
-  body {
-    background-color: #f5f5f5; /* Light gray background color */
-    color: #333; /* Dark text color */
-    font-family: 'Arial', sans-serif; /* Use a readable font */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    margin-top: 20px;
-  }
-
-  h1 {
-    font-size: 28px;
-    color: #007bff; /* Blue heading color */
-    margin-bottom: 20px;
-  }
-
-  #form-container-create,
-  #form-container-clone,
-  #form-container-fork,
-  #form-container-delete,
-  #form-container-check_branch,
-  #form-container-get_branches,
-  #form-container-commit_count,
-  #form-container-merge_branch,
-  #form-container-commit_diff,
-  #form-container-create_branch,
-  #form-container-diff,
-  #form-container-push {
-    display: none;
-  }
-
-  /* Style form elements */
-  form {
-    max-width: 300px;
-    margin: 0 auto;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555; /* Dark gray label color */
-  }
-
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 4px;
-  }
-
-  input[type="submit"] {
-    background-color: #007bff; /* Blue submit button color */
-    color: #fff; /* White text color */
-    cursor: pointer;
-  }
-
-  input[type="submit"]:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-  }
-</style>
-
-
-</head>
-
-<body>
-
-  <h1>GITS Homepage</h1>
-
-  <!-- Image container -->
-
-  <div id="image-container">
+      #tokenList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      #tokenList li {
+        cursor: pointer;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+      }
+      
+      #tokenList li:hover {
+        background-color: #c0c0c0;
+      }
+      
+      #tokenDetails {
+        font-size: 18px;
+      }
+    
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid #007aff; 
+        border-radius: 8px; 
+        color: #007aff; 
+        background-color: transparent;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      
+      .add-button {
+        color: #4cd964; 
+        background-color: transparent;
+        border: 2px solid #4cd964;
+      }
+      
+      .add-button:hover {
+        background-color: #4cd964;
+        color: #fff;
+      }
+      
+      .op-button {
+        color: #007aff;
+        background-color: transparent;
+        border: 2px solid #007aff;
+      }
+      
+      .op-button:hover {
+        background-color: #007aff;
+        color: #fff;
+      }
+      
+      .delete-button {
+        color: #ff3b30; 
+        background-color: transparent;
+        border: 2px solid #ff3b30;
+      }
+      
+      .delete-button:hover {
+        background-color: #ff3b30;
+        color: #fff;
+      }
+    </style>
+    
+    
+  </head>
+  
+  <body>
+    
+    <h1>GITS Homepage</h1>
+    
+    <!-- Image container -->
+    
+    <div id="image-container">
       <img src="{{ url_for('static', filename='image.gif') }}" alt="Animated GIF" width="450" height="300">
-  </div>
-
-  <br>
-
-  <label for="option">Select an option:</label>
-  <br>
-
-  <select id="option" onchange="toggleForm(this)">
-    <option value="hidden">-- Select --</option>
-    <option value="create_repo">Create Repo</option>
-    <option value="clone_repo">Clone Repo</option>
-    <option value="delete_repo">Delete Repo</option>
-    <option value="fork_repo">Fork Repo</option>
-    <option value="check_branch">Check Branch</option>
-    <option value="get_branches">Get Branches</option>
-    <option value="commit_count">Get Commit Count</option>
-    <option value="merge_branch">Merge Branch to Main</option>
-    <option value="commit_diff">Commit diff</option>
-    <option value="create_branch">Create Branch</option>
-    <option value="diff">View Diff</option>
-    <option value="push">Push Diff</option>
-    <option value="status">View Status</option>
-    <option value="log">View Log</option>
-
-  </select>
-
-  <br> <br>
-  <div id="form-container-create">
-    <form action="/create_repo" method="post">
-      <label for="repoName">Repo Name:</label>
-      <input type="text" id="repoName" name="repoName" required> <br> <br>
-
-      <input type="submit" value="Submit">
+    </div>
+    
+    <br>
+    
+    <label for="option">Select a token:</label>
+    <br>
+    
+    <form id="token_selection" action="/token_selection" method="post" onsubmit="submitForm(); return false;"> 
+      <select id="tokenSelection" onchange="selectToken()">
+        <option value="hidden">-- Select Token --</option>
+      </select>
+      <input type="hidden" id="selectedToken" name="selectedToken">
     </form>
-  </div>
+    
+    <br>
+    <button class="button op-button" id="op-button" onclick = "openModal()">Manage</button>
+    <br>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="title">Manage Tokens</div>
+      <div class="overlay" id="add-overlay"></div>
+      <div class="modal" id="add-modal">
+        <span class="close-btn" onclick="closeAddModal()">&times;</span>
+        <div class="title">Add Token</div>
+        <div id="form-add-token">
+          <form id="addToken">
+            <div class='flexContainer'>             
+              <label>Token</label>
+              <br>
+              <input type="text" id="token" name="token" required>
+            </div>
+            
+            <div class='flexContainer'>             
+              <label for="alias">Alias</label>
+              <input type="text" id="alias" name="alias" required>
+            </div>
+            
+            <div class='flexContainer'>             
+              <label for="expiration">Expriation</label>
+              <input type="date" id="expiration" name="expiration" required>
+            </div>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
+      
+      <div class="overlay" id="delete-overlay"></div>
+      <div class="modal" id="delete-modal">
+        <span class="close-btn" onclick="closeDeleteModal()">&times;</span>
+        <div class="title">Add Token</div>
+        <div id="form-add-token">
+          <form id="addToken">
+            <div class='flexContainer'>             
+              <label>Token</label>
+              <br>
+              <input type="text" id="token" name="token" required>
+            </div>
+            
+            <div class='flexContainer'>             
+              <label for="alias">Alias</label>
+              <input type="text" id="alias" name="alias" required>
+            </div>
+            
+            <div class='flexContainer'>             
+              <label for="expiration">Expriation</label>
+              <input type="date" id="expiration" name="expiration" required>
+            </div>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
 
+      <div class="flexContainer" id="flexContainer">
+        <div id="leftColumn">
+          <h2>Token List</h2>
+          <ul id="tokenList"></ul>
+          <div display=flex>
+            <button class="button add-button" id="add_button" onclick="openAddModal()">Add</button>
+            
+          </div>
+        </div>
+        <div id="rightColumn">
+          <h2>Token Details</h2>
+          <div id="tokenDetails"></div>
+        </div>
+      </div>
+    </div>
+    
+    <label for="option">Select an option:</label>
+    <br>
+    
+    <select id="option" onchange="toggleForm(this)">
+      <option value="hidden">-- Select --</option>
+      <option value="create_repo">Create Repo</option>
+      <option value="clone_repo">Clone Repo</option>
+      <option value="delete_repo">Delete Repo</option>
+      <option value="fork_repo">Fork Repo</option>
+      <option value="check_branch">Check Branch</option>
+      <option value="get_branches">Get Branches</option>
+      <option value="commit_count">Get Commit Count</option>
+      <option value="merge_branch">Merge Branch to Main</option>
+      <option value="commit_diff">Commit diff</option>
+      <option value="create_branch">Create Branch</option>
+      <option value="diff">View Diff</option>
+      <option value="push">Push Diff</option>
+      <option value="status">View Status</option>
+      <option value="log">View Log</option>
+      
+    </select>
+    
+    <br> <br>
+    <div id="form-container-create">
+      <form action="/create_repo" method="post">
+        <label for="repoName">Repo Name:</label>
+        <input type="text" id="repoName" name="repoName" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    
+    <div id="form-container-commit_count">
+      <form action="/commit_count" method="post">
+        <label for="repoURL">Repository URL:</label>
+        <input type="text" id="repoURL" name="repoURL" required><br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-status">
+      <form action="/git_status" method="post">
+        <label for="repoURL">Repository URL:</label>
+        <input type="text" id="repoURL" name="repoURL" required><br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-log">
+      <form action="/git_log" method="post">
+        <label for="repoURL">Repository URL:</label>
+        <input type="text" id="repoURL" name="repoURL" required><br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-clone">
+      <form action="/clone_repo" method="post">
+        <label for="repoURL">Repository URL:</label>
+        <input type="text" id="repoURL" name="repoURL" required><br> <br>
+        
+        <label for="destinationPath">Destination Path:</label>
+        <input type="text" id="destinationPath" name="destinationPath" required><br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-delete">
+      <form action="/delete_repo" method="post">
+        <label for="userName">User Name:</label>
+        <input type="text" id="userName" name="userName" required> <br> <br>
+        
+        <label for="repoName">Repo Name:</label>
+        <input type="text" id="repoName" name="repoName" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-get_branches">
+      <form action="/get_branches" method="post">
+        <label for="repoOwner">Repo Owner:</label>
+        <input type="text" id="repoOwner" name="repoOwner" required> <br> <br>
+        
+        <label for="repoName">Repo Name:</label>
+        <input type="text" id="repoName" name="repoName" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-fork">
+      <form action="/fork_repo" method="post">
+        <label for="userName">Repo Owner:</label>
+        <input type="text" id="userName" name="userName" required> <br> <br>
+        
+        <label for="repoName">Repo Name:</label>
+        <input type="text" id="repoName" name="repoName" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-check_branch">
+      <form action="/check_branch" method="post">
+        <label for="userName">Repo Owner:</label>
+        <input type="text" id="userName" name="userName" required> <br> <br>
+        
+        <label for="repoName">Repo Name:</label>
+        <input type="text" id="repoName" name="repoName" required> <br> <br>
+        
+        <label for="branchName">Branch Name:</label>
+        <input type="text" id="branchName" name="branchName" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-create_branch">
+      <form action="/create_branch" method="post">
+        <label for="userName">User Name:</label>
+        <input type="text" id="userName" name="userName" required> <br> <br>
+        
+        <label for="repoName">Repo Name:</label>
+        <input type="text" id="repoName" name="repoName" required> <br> <br>
+        
+        <label for="baseBranch">Base Branch:</label>
+        <input type="text" id="baseBranch" name="baseBranch" required> <br> <br>
+        
+        <label for="newBranch">New Branch:</label>
+        <input type="text" id="newBranch" name="newBranch" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-merge_branch">
+      <form action="/merge_branch" method="post">
+        <label for="repoOwner">User Name:</label>
+        <input type="text" id="repoOwner" name="repoOwner" required> <br> <br>
+        
+        <label for="repoName">Repo Name:</label>
+        <input type="text" id="repoName" name="repoName" required> <br> <br>
+        
+        <label for="branchName">Branch Name:</label>
+        <input type="text" id="branchName" name="branchName" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-commit_diff">
+      <form action="/commit_diff" method="post">
+        <label for="localPath">Working Directory:</label>
+        <input type="text" id="localPath" name="localPath" required> <br> <br>
+        
+        <label for="branchName">Branch Name:</label>
+        <input type="text" id="branchName" name="branchName" required> <br> <br>
+        
+        <label for="filename">Filenames:</label>
+        <input type="text" id="filename" name="filename" required> <br> <br>
+        
+        <label for="commit_msg">Commit Message:</label>
+        <input type="text" id="commit_msg" name="commit_msg" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-diff">
+      <form action="/diff" method="post">
+        <label for="repoOwner">User Name:</label>
+        <input type="text" id="repoOwner" name="repoOwner" required> <br> <br>
+        
+        <label for="repoName">Repo Name:</label>
+        <input type="text" id="repoName" name="repoName" required> <br> <br>
+        
+        <label for="branchName">Branch Name:</label>
+        <input type="text" id="branchName" name="branchName" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <div id="form-container-push">
+      <form action="/push" method="post">
+        <label for="userName">User Name:</label>
+        <input type="text" id="userName" name="userName" required> <br> <br>
+        
+        <label for="localPath">Working Directory:</label>
+        <input type="text" id="localPath" name="localPath" required> <br> <br>
+        
+        <label for="repoName">Repo Name:</label>
+        <input type="text" id="repoName" name="repoName" required> <br> <br>
+        
+        <label for="branchName">Branch Name:</label>
+        <input type="text" id="branchName" name="branchName" required> <br> <br>
+        
+        <label for="filename">Filenames:</label>
+        <input type="text" id="filename" name="filename" required> <br> <br>
+        
+        <label for="commit_msg">Commit Message:</label>
+        <input type="text" id="commit_msg" name="commit_msg" required> <br> <br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+    <script>
+      
+      class Token {
+        constructor(token, expirationTime, alias) {
+          this.token = token;
+          this.expirationTime = new Date(expirationTime);
+          this.alias = alias;
+        }
+      }
+      
+      function saveTokensToLocalStorage(newTokens) {
+        const existingTokensJSON = localStorage.getItem('tokens');
+        const existingTokens = existingTokensJSON ? JSON.parse(existingTokensJSON) : [];
+        
+        const allTokens = [...existingTokens, ...newTokens];
+        
+        const serializedTokens = allTokens.map(token => ({
+          token: token.token,
+          expirationTime: token.expirationTime,
+          alias: token.alias
+        }));
+        
+        localStorage.setItem('tokens', JSON.stringify(serializedTokens));
+        console.log("Tokens added and saved to local storage");
+      }
 
-  <div id="form-container-commit_count">
-    <form action="/commit_count" method="post">
-      <label for="repoURL">Repository URL:</label>
-      <input type="text" id="repoURL" name="repoURL" required><br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-   <div id="form-container-status">
-    <form action="/git_status" method="post">
-      <label for="repoURL">Repository URL:</label>
-      <input type="text" id="repoURL" name="repoURL" required><br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-log">
-    <form action="/git_log" method="post">
-      <label for="repoURL">Repository URL:</label>
-      <input type="text" id="repoURL" name="repoURL" required><br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-clone">
-    <form action="/clone_repo" method="post">
-      <label for="repoURL">Repository URL:</label>
-      <input type="text" id="repoURL" name="repoURL" required><br> <br>
-
-      <label for="destinationPath">Destination Path:</label>
-      <input type="text" id="destinationPath" name="destinationPath" required><br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-delete">
-    <form action="/delete_repo" method="post">
-      <label for="userName">User Name:</label>
-      <input type="text" id="userName" name="userName" required> <br> <br>
-
-      <label for="repoName">Repo Name:</label>
-      <input type="text" id="repoName" name="repoName" required> <br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-get_branches">
-    <form action="/get_branches" method="post">
-      <label for="repoOwner">Repo Owner:</label>
-      <input type="text" id="repoOwner" name="repoOwner" required> <br> <br>
-
-      <label for="repoName">Repo Name:</label>
-      <input type="text" id="repoName" name="repoName" required> <br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-fork">
-    <form action="/fork_repo" method="post">
-      <label for="userName">Repo Owner:</label>
-      <input type="text" id="userName" name="userName" required> <br> <br>
-
-      <label for="repoName">Repo Name:</label>
-      <input type="text" id="repoName" name="repoName" required> <br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-check_branch">
-    <form action="/check_branch" method="post">
-      <label for="userName">Repo Owner:</label>
-      <input type="text" id="userName" name="userName" required> <br> <br>
-
-      <label for="repoName">Repo Name:</label>
-      <input type="text" id="repoName" name="repoName" required> <br> <br>
-
-      <label for="branchName">Branch Name:</label>
-      <input type="text" id="branchName" name="branchName" required> <br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-create_branch">
-    <form action="/create_branch" method="post">
-      <label for="userName">User Name:</label>
-      <input type="text" id="userName" name="userName" required> <br> <br>
-
-      <label for="repoName">Repo Name:</label>
-      <input type="text" id="repoName" name="repoName" required> <br> <br>
-
-      <label for="baseBranch">Base Branch:</label>
-      <input type="text" id="baseBranch" name="baseBranch" required> <br> <br>
-
-      <label for="newBranch">New Branch:</label>
-      <input type="text" id="newBranch" name="newBranch" required> <br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-merge_branch">
-    <form action="/merge_branch" method="post">
-      <label for="repoOwner">User Name:</label>
-      <input type="text" id="repoOwner" name="repoOwner" required> <br> <br>
-
-      <label for="repoName">Repo Name:</label>
-      <input type="text" id="repoName" name="repoName" required> <br> <br>
-
-      <label for="branchName">Branch Name:</label>
-      <input type="text" id="branchName" name="branchName" required> <br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-commit_diff">
-    <form action="/commit_diff" method="post">
-      <label for="localPath">Working Directory:</label>
-      <input type="text" id="localPath" name="localPath" required> <br> <br>
-
-      <label for="branchName">Branch Name:</label>
-      <input type="text" id="branchName" name="branchName" required> <br> <br>
-
-      <label for="filename">Filenames:</label>
-      <input type="text" id="filename" name="filename" required> <br> <br>
-
-      <label for="commit_msg">Commit Message:</label>
-      <input type="text" id="commit_msg" name="commit_msg" required> <br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-diff">
-    <form action="/diff" method="post">
-      <label for="repoOwner">User Name:</label>
-      <input type="text" id="repoOwner" name="repoOwner" required> <br> <br>
-
-      <label for="repoName">Repo Name:</label>
-      <input type="text" id="repoName" name="repoName" required> <br> <br>
-
-      <label for="branchName">Branch Name:</label>
-      <input type="text" id="branchName" name="branchName" required> <br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div id="form-container-push">
-    <form action="/push" method="post">
-      <label for="userName">User Name:</label>
-      <input type="text" id="userName" name="userName" required> <br> <br>
-
-      <label for="localPath">Working Directory:</label>
-      <input type="text" id="localPath" name="localPath" required> <br> <br>
-
-      <label for="repoName">Repo Name:</label>
-      <input type="text" id="repoName" name="repoName" required> <br> <br>
-
-      <label for="branchName">Branch Name:</label>
-      <input type="text" id="branchName" name="branchName" required> <br> <br>
-
-      <label for="filename">Filenames:</label>
-      <input type="text" id="filename" name="filename" required> <br> <br>
-
-      <label for="commit_msg">Commit Message:</label>
-      <input type="text" id="commit_msg" name="commit_msg" required> <br> <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <script>
-    function toggleForm(selectElement) {
-      document.getElementById('form-container-create').style.display = 'none';
-      document.getElementById('form-container-clone').style.display = 'none';
-      document.getElementById('form-container-fork').style.display = 'none';
-      document.getElementById('form-container-delete').style.display = 'none';
-      document.getElementById('form-container-check_branch').style.display = 'none';
-      document.getElementById('form-container-get_branches').style.display = 'none';
-      document.getElementById('form-container-commit_count').style.display = 'none';
-      document.getElementById('form-container-status').style.display = 'none';
-      document.getElementById('form-container-merge_branch').style.display = 'none';
-      document.getElementById('form-container-commit_diff').style.display = 'none';
-      document.getElementById('form-container-create_branch').style.display = 'none';
-      document.getElementById('form-container-log').style.display = 'none';
-      document.getElementById('form-container-diff').style.display = 'none';
-      document.getElementById('form-container-push').style.display = 'none';
-
-      if (selectElement.value === 'create_repo') {
-        document.getElementById('form-container-create').style.display = 'block';
-      } else if (selectElement.value === 'clone_repo') {
-        document.getElementById('form-container-clone').style.display = 'block';
-      } else if (selectElement.value === 'delete_repo') {
-        document.getElementById('form-container-delete').style.display = 'block';
-      } else if (selectElement.value === 'fork_repo') {
-        document.getElementById('form-container-fork').style.display = 'block';
-      } else if (selectElement.value === 'check_branch') {
-        document.getElementById('form-container-check_branch').style.display = 'block';
-      } else if (selectElement.value === 'get_branches') {
-        document.getElementById('form-container-get_branches').style.display = 'block';
-      } else if (selectElement.value === 'commit_count') {
-        document.getElementById('form-container-commit_count').style.display = 'block';
-      } else if (selectElement.value === 'merge_branch') {
-        document.getElementById('form-container-merge_branch').style.display = 'block';
-      } else if (selectElement.value === 'commit_diff') {
-        document.getElementById('form-container-commit_diff').style.display = 'block';
-      } else if (selectElement.value === 'create_branch') {
-        document.getElementById('form-container-create_branch').style.display = 'block';
-      } else if (selectElement.value === 'diff') {
-        document.getElementById('form-container-diff').style.display = 'block';
-      } else if (selectElement.value === 'status') {
+      
+      
+      function loadTokensFromLocalStorage() {
+        const storedTokens = localStorage.getItem('tokens');
+        const today = new Date();
+        
+        const activeGroup = document.createElement('optgroup');
+        activeGroup.label = 'Active Tokens';
+        
+        const expiredGroup = document.createElement('optgroup');
+        expiredGroup.label = 'Expired';
+        
+        const selectElement = document.getElementById('tokenSelection');
+        selectElement.innerHTML = '<option value="hidden">-- Select Token --</option>';
+        
+        if (storedTokens) {
+          const serializedTokens = JSON.parse(storedTokens);
+          
+          serializedTokens.forEach(token => {
+            const option = document.createElement('option');
+            option.value = token.token;
+            option.textContent = token.alias;
+            const expirationTime = new Date(token.expirationTime);
+            if (expirationTime < today) {
+              option.style.color = 'grey';
+              option.disabled = true;
+              expiredGroup.appendChild(option);
+            } else {
+              activeGroup.appendChild(option);
+            }
+            selectElement.appendChild(activeGroup);
+            selectElement.appendChild(expiredGroup);
+            
+          });
+          return serializedTokens.map(token => new Token(token.token, token.expirationTime, token.alias));
+        }
+      }
+      
+      // If you need an AJAX example, see here
+      function selectToken() {
+        const selectedToken = document.getElementById('tokenSelection').value;
+        fetch('/token_selection', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `token=${selectedToken}`,
+        })
+        .then(response => response.text())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      }
+      
+      // Or this one. Whatever fits your need.
+      function submitForm() {
+        // Get data
+        var selectedToken = $('#tokenSelection').val();
+        
+        // Make an asynchronous POST request using jQuery
+        $.ajax({
+          type: 'POST',
+          url: '/token_selection',
+          data: { token: selectedToken },
+          success: function (data) {
+            // Handle the response as needed (update the UI, etc.)
+            console.log(data);
+          },
+          error: function (error) {
+            console.error('Error:', error);
+          },
+        });
+      }     
+      
+      function toggleForm(selectElement) {
+        document.getElementById('form-container-create').style.display = 'none';
+        document.getElementById('form-container-clone').style.display = 'none';
+        document.getElementById('form-container-fork').style.display = 'none';
+        document.getElementById('form-container-delete').style.display = 'none';
+        document.getElementById('form-container-check_branch').style.display = 'none';
+        document.getElementById('form-container-get_branches').style.display = 'none';
+        document.getElementById('form-container-commit_count').style.display = 'none';
+        document.getElementById('form-container-status').style.display = 'none';
+        document.getElementById('form-container-merge_branch').style.display = 'none';
+        document.getElementById('form-container-commit_diff').style.display = 'none';
+        document.getElementById('form-container-create_branch').style.display = 'none';
+        document.getElementById('form-container-log').style.display = 'none';
+        document.getElementById('form-container-diff').style.display = 'none';
+        document.getElementById('form-container-push').style.display = 'none';
+        document.getElementById('form-container-status').style.display = 'none';
+        document.getElementById('form-container-log').style.display = 'none';
+        
+        if (selectElement.value === 'create_repo') {
+          document.getElementById('form-container-create').style.display = 'block';
+        } else if (selectElement.value === 'clone_repo') {
+          document.getElementById('form-container-clone').style.display = 'block';
+        } else if (selectElement.value === 'delete_repo') {
+          document.getElementById('form-container-delete').style.display = 'block';
+        } else if (selectElement.value === 'fork_repo') {
+          document.getElementById('form-container-fork').style.display = 'block';
+        } else if (selectElement.value === 'check_branch') {
+          document.getElementById('form-container-check_branch').style.display = 'block';
+        } else if (selectElement.value === 'get_branches') {
+          document.getElementById('form-container-get_branches').style.display = 'block';
+        } else if (selectElement.value === 'commit_count') {
+          document.getElementById('form-container-commit_count').style.display = 'block';
+        } else if (selectElement.value === 'merge_branch') {
+          document.getElementById('form-container-merge_branch').style.display = 'block';
+        } else if (selectElement.value === 'commit_diff') {
+          document.getElementById('form-container-commit_diff').style.display = 'block';
+        } else if (selectElement.value === 'create_branch') {
+          document.getElementById('form-container-create_branch').style.display = 'block';
+        } else if (selectElement.value === 'diff') {
+          document.getElementById('form-container-diff').style.display = 'block';
+        } else if (selectElement.value === 'status') {
           document.getElementById('form-container-status').style.display = 'block';
-      } else if (selectElement.value === 'log') {
+        } else if (selectElement.value === 'log') {
           document.getElementById('form-container-log').style.display = 'block';
+        } else if (selectElement.value === 'push') {
+          document.getElementById('form-container-push').style.display = 'block';
+        }
       }
-      else if (selectElement.value === 'push') {
-        document.getElementById('form-container-push').style.display = 'block';
+      
+      function openModal() {
+        loadTokensFromLocalStorage2();
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('modal').style.display = 'block';
       }
-    }
-  </script>
+      
+      function closeModal() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('modal').style.display = 'none';
+      }
+      
+      function openAddModal() {
+        loadTokensFromLocalStorage2();
+        document.getElementById('add-overlay').style.display = 'block';
+        document.getElementById('add-modal').style.display = 'block';
+      }
+      
+      function closeAddModal() {
+        loadTokensFromLocalStorage();
+        document.getElementById('add-overlay').style.display = 'none';
+        document.getElementById('add-modal').style.display = 'none';
+        document.getElementById('addToken').reset();
+        closeModal();
+        openModal();
+      }
+      
+      function loadTokensFromLocalStorage2() {
+        const storedTokens = localStorage.getItem('tokens');
+        if (storedTokens) {
+          const serializedTokens = JSON.parse(storedTokens);
+          const tokenListElement = document.getElementById('tokenList');
+          tokenListElement.innerHTML = '';
+          
+          const today = new Date();
+          
+          serializedTokens.forEach(token => {
+            console.log(token);
+            const listItem = document.createElement('li');
+            listItem.textContent = `${token.alias}`;
+            const expirationTime = new Date(token.expirationTime);
+            // Check if the token has expired
+            if (expirationTime < today.getTime()) {
+              listItem.style.color = 'red'; // Mark expired options
+              listItem.textContent = `[Expired] ${token.alias}`;
+            }
+            
+            listItem.addEventListener('click', () => displayTokenDetails(token));
+            tokenListElement.appendChild(listItem);
+          });
+          
+          return serializedTokens.map(token => new Token(token.token, new Date(token.expirationTime), token.alias));
+        }
+        return [];
+      }
+      
+      function displayTokenDetails(token) {
+        const tokenDetailsElement = document.getElementById('tokenDetails');
+        const expirationTime = new Date(token.expirationTime);
+        const today = new Date();
+        if (expirationTime < today.getTime()) {
+          tokenDetailsElement.innerHTML = `
+          <p><strong>This token has expired</strong></p>
+          <p><strong>Alias:</strong> ${token.alias}</p>
+          <p><strong>Expiration Time:</strong> ${expirationTime.toLocaleString()}</p>`;
+          
+        } else {
+          tokenDetailsElement.innerHTML = `
+          <p id="tokenId"><strong>Token:</strong> ${token.token}</p>
+          <p><strong>Alias:</strong> ${token.alias}</p>
+          <p><strong>Expiration Time:</strong> ${expirationTime.toLocaleString()}</p>
+          <button class="button delete-button" onclick="deleteToken()" id="delete_button">Delete</button>`;
+        }
+      }
+    
+      function deleteToken() {
+        const tokenDetailsElement = document.getElementById('tokenDetails');
+        const tokenId = document.getElementById('tokenId').textContent.split(':')[1].trim();
+        
+        const existingTokensJSON = localStorage.getItem('tokens');
+        const existingTokens = existingTokensJSON ? JSON.parse(existingTokensJSON) : [];
+        
+        const tokenIndex = existingTokens.findIndex(token => token.token === tokenId);
+        
+        if (tokenIndex !== -1) {
+          existingTokens.splice(tokenIndex, 1);
+          
+          localStorage.setItem('tokens', JSON.stringify(existingTokens));
+          tokenDetailsElement.innerHTML = `
+          <p id="tokenId">Token has been deleted.</p>`;
+          console.log('Token deleted successfully');
+        } else {
+          console.log('Token not found');
+        }
+        closeModal();
+        openModal();
+      }
+    
 
-</body>
+      document.getElementById('addToken').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const tokenValue = document.getElementById('token').value;
+        const aliasValue = document.getElementById('alias').value;
+        const expirationValue = document.getElementById('expiration').value;
+        
+        const newToken = new Token(tokenValue, expirationValue, aliasValue);
+        
+        saveTokensToLocalStorage([newToken]);
+        closeAddModal();
+      });
+
+
+      loadTokensFromLocalStorage();
+      
+      
+    </script>
+    
+  </body>
 </html>
