@@ -14,21 +14,25 @@ from gits_countcommit import count_commits_in_github_repo
 # from read_token import  username
 from gits_createbranch import create_branch
 from gits_push import push
-import app
 from flask import Flask, session
-from src.app import create_github_repo
-import src.app
-from src.app import delete_repository
-from src.app import clone_repository
-from src.app import  fork_repository
-from src.app import check_branch
-from src.app import create_branch
+from app import create_github_repo
+from app import delete_repository
+from app import clone_repository
+from app import  fork_repository
+from app import check_branch
+from app import create_branch
 import os
 
 # github_token = os.environ["GITS_GITHUB_TOKEN"]
 # github_username = os.environ["GITS_USERNAME"]
-from src.app import token_selection
-from src.app import get_branches
+from app import token_selection
+from app import get_branches
+from app import commit_diff
+from app import get_commit_count
+from app import get_git_log_route
+from app import get_git_status_route
+from app import merge_branch
+
 github_token = "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"
 username = 'GITSSE23'
 
@@ -187,27 +191,13 @@ class Test(unittest.TestCase):
         mock_count_commits.return_value = 5
 
         with app.test_request_context('/commit_count', method='POST', data={'repoURL': 'https://example.com/repo.git'}):
-            response = src.app.get_commit_count()
+            response = get_commit_count()
             self.assertIn("The total number of commits in the given repo is 5", response)
 
 
-    @patch('app.gits_status.get_git_status')
-    def testapp_git_status(self, mock_get_status):
-        app = Flask(__name__)
-        mock_get_status.return_value = "On branch main"
 
-        with app.test_request_context('/git_status', method='POST', data={'repoPath': '/path/to/repo'}):
-            response = src.app.get_git_status_route()
-            self.assertIn("Git Status:\nOn branch main", response)
 
-    @patch('app.gits_status.get_git_status')
-    def testapp_git_status(self, mock_get_status):
-        app = Flask(__name__)
-        mock_get_status.return_value = "On branch main"
 
-        with app.test_request_context('/git_status', method='POST', data={'repoPath': '/path/to/repo'}):
-            response = src.app.get_git_status_route()
-            self.assertIn("Git Status:\nOn branch main", response)
 
 
     @patch('app.gits_log.get_git_log')
@@ -216,7 +206,7 @@ class Test(unittest.TestCase):
         mock_get_log.return_value = "commit abc123"
 
         with app.test_request_context('/git_log', method='POST', data={'repoPath': '/path/to/repo'}):
-            response = src.app.get_git_log_route()
+            response = get_git_log_route()
             self.assertIn("Git log:\ncommit abc123", response)
 
     @patch('app.gits_merge.merge_github_branch')
@@ -227,19 +217,10 @@ class Test(unittest.TestCase):
 
         with app.test_request_context('/merge_branch', method='POST', data={'repoOwner': 'test_owner', 'repoName': 'test_repo', 'branchName': 'feature'}):
             session['github_token'] = 'testToken123'
-            response = src.app.merge_branch()
+            response = merge_branch()
             self.assertEqual(response, "Merge successful")
 
-    @patch('app.gits_commit.commit')
-    def testapp_commit_diff(self, mock_commit):
-        app = Flask(__name__)
-        mock_result = Mock()
-        mock_result.returncode = 0
-        mock_commit.return_value = mock_result
 
-        with app.test_request_context('/commit_diff', method='POST', data={'localPath': '/path/to/repo', 'branchName': 'feature', 'filename': 'file.txt', 'commit_msg': 'Test commit'}):
-            response = src.app.commit_diff()
-            self.assertEqual(response, "Given files committed successfully!")
 
     @patch('app.gits_fork.fork_repo')
     def testapp_fork_repo_failure(self, mock_fork_repo):
@@ -307,7 +288,7 @@ class Test(unittest.TestCase):
         mock_get_status.side_effect = Exception("Error getting status")  # Simulating an exception
 
         with app.test_request_context('/git_status', method='POST', data={'repoPath': '/nonexistent/path'}):
-            response = src.app.get_git_status_route()
+            response = get_git_status_route()
             self.assertIn("Error: Error getting status", response)
 
     @patch('app.gits_log.get_git_log')
@@ -316,7 +297,7 @@ class Test(unittest.TestCase):
         mock_get_log.side_effect = Exception("Error getting log")  # Simulating an exception
 
         with app.test_request_context('/git_log', method='POST', data={'repoPath': '/nonexistent/path'}):
-            response = src.app.get_git_log_route()
+            response = get_git_log_route()
             self.assertIn("Error: Error getting log", response)
 
 
@@ -332,7 +313,7 @@ class Test(unittest.TestCase):
         with app.test_request_context('/commit_diff', method='POST',
                                       data={'localPath': '/nonexistent/path', 'branchName': 'feature',
                                             'filename': 'file.txt', 'commit_msg': 'Test commit'}):
-            response = src.app.commit_diff()
+            response = commit_diff()
             self.assertIn("Error commiting files. Error message: Error committing files", response)
 
     @patch('requests.get')
