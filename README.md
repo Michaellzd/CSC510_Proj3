@@ -1,4 +1,5 @@
 # GITS3.2
+
 ## Group30_Proj3
 
 [Setup - YouTube Link](https://www.youtube.com/watch?v=3JSH69fN-iU)  
@@ -69,10 +70,9 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
    Case studies can be found [here](https://github.com/psvkaushik/Group50_Proj2/blob/main/docs/case_study.md)  
    Troubleshooting steps can be found [here](https://github.com/psvkaushik/Group50_Proj2/blob/main/docs/Troubleshooting_guide.md)
 
-
 ## 📝 Project 3(Score card and video!) </a>
-<span style="color:blue">[Project 3 Readme !](proj3/README.md)</span>
 
+<span style="color:blue">[Project 3 Readme !](proj3/README.md)</span>
 
 # 📝Documentation
 
@@ -96,14 +96,13 @@ The primary goal of this project is to simplify the tasks of developers as they 
 4. Flask [link](https://flask.palletsprojects.com/en/3.0.x/installation/#python-version)
 5. PyYaml [linl](https://pypi.org/project/PyYAML/)
 
-
-
 ## 👥 Team Members <a name="TeamMember"></a>
+
 Group 30:
 
-Jack Hou	
+Jack Hou
 
-Zhendong Lu	
+Zhendong Lu
 
 Feng Wang
 
