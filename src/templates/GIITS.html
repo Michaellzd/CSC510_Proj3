@@ -112,6 +112,7 @@ this file. If not, please write to: gits3.1project@gmail.com
     <option value="diff">View Diff</option>
     <option value="push">Push Diff</option>
     <option value="status">View Status</option>
+    <option value="log">View Log</option>
 
   </select>
 
@@ -137,6 +138,15 @@ this file. If not, please write to: gits3.1project@gmail.com
 
    <div id="form-container-status">
     <form action="/git_status" method="post">
+      <label for="repoURL">Repository URL:</label>
+      <input type="text" id="repoURL" name="repoURL" required><br> <br>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+  <div id="form-container-log">
+    <form action="/git_log" method="post">
       <label for="repoURL">Repository URL:</label>
       <input type="text" id="repoURL" name="repoURL" required><br> <br>
 
@@ -310,6 +320,7 @@ this file. If not, please write to: gits3.1project@gmail.com
       document.getElementById('form-container-merge_branch').style.display = 'none';
       document.getElementById('form-container-commit_diff').style.display = 'none';
       document.getElementById('form-container-create_branch').style.display = 'none';
+      document.getElementById('form-container-log').style.display = 'none';
       document.getElementById('form-container-diff').style.display = 'none';
       document.getElementById('form-container-push').style.display = 'none';
 
@@ -337,7 +348,10 @@ this file. If not, please write to: gits3.1project@gmail.com
         document.getElementById('form-container-diff').style.display = 'block';
       } else if (selectElement.value === 'status') {
           document.getElementById('form-container-status').style.display = 'block';
-      } else if (selectElement.value === 'push') {
+      } else if (selectElement.value === 'log') {
+          document.getElementById('form-container-log').style.display = 'block';
+      }
+      else if (selectElement.value === 'push') {
         document.getElementById('form-container-push').style.display = 'block';
       }
     }

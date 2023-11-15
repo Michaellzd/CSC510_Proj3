@@ -22,6 +22,7 @@ import gits_createbranch
 import gits_commit
 import gits_push
 import gits_status
+import gits_log
 
 import yaml
 import os
@@ -137,6 +138,15 @@ def get_git_status_route():
         repo_path = request.form.get('repoPath', '.')  # Default to the current directory if not provided
         status_info = gits_status.get_git_status()
         return f"Git Status:\n{status_info}"
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+@app.route('/git_log', methods=['POST'])
+def get_git_log_route():
+    try:
+        repo_path = request.form.get('repoPath', '.')  # Default to the current directory if not provided
+        log_info = gits_log.get_git_log()
+        return f"Git log:\n{log_info}"
     except Exception as e:
         return f"Error: {str(e)}"
 
