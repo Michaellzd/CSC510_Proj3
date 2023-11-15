@@ -23,6 +23,9 @@
 [![Style Checker and Prettify Code](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/Style_Checker_and_Prettify_Code.yml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/Style_Checker_and_Prettify_Code.yml)
 [![GitHub Actions](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/build_test.yaml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/build_test.yaml)
 [![Running Code Coverage](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/codecov.yml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/codecov.yml)
+<p align="center">
+    <a href="https://github.com/Michaellzd/CSC510_Proj3/issues/new/choose">Report Bug</a>
+</p>
 
 # 🧐 About GITS3.2
 
@@ -31,7 +34,7 @@
 So you want to start a Project on Github <br><br>
 Do CLI commands scare you?? <br><br>
 Do platform dependencies of softwares available annoy you?? <br><br>
-Don't worry we got you! Introducing GITS3.1
+Don't worry we got you! Introducing GITS3.2
 
 GITS3.2 simplifies the organization of your repository according to Software Engineering Standards, ensuring it adheres to the required structure for a "Well-Structured Repository."
 
@@ -72,11 +75,6 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
 
 ## 📝 Project 3(Score card and video!) </a>
 <span style="color:blue">[Project 3 Readme !](proj3/README.md)</span>
-
-
-# 📝Documentation
-
-The primary goal of this project is to simplify the tasks of developers as they collaborate on their project repositories. GITS3.1 streamlines their workflow, enhances efficiency, and minimizes time spent by offering essential default files in the proper structure. This approach allows naive users/developers to concentrate on improving their projects without the burden of repository management.
 
 # 🗺️Roadmap
 
