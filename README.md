@@ -84,6 +84,7 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
 - [x] Also made an executable to setup the project on command line for ease of use for the user
 - [x] Implemented a UI
 - [x] Provided feature to add custom commands and included instaructions on using template to create corressponding code
+- [x] GitHub token management
 - [x] Website without refresh
 - [ ] Host application on cloud
 - [ ] Containerize the application
