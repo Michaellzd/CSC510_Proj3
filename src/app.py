@@ -29,20 +29,28 @@ import os
 
 
 # replace this with your token
-global token
+#global token
 
 app = Flask(__name__, static_url_path='/static')
+from flask import session
 
+import secrets
+
+# Generate a random 24-byte (192-bit) secret key
+secret_key = secrets.token_hex(24)
+
+app.secret_key = secret_key
 
 @app.route('/')
 def index():
     return render_template('GIITS.html')
 
+
 @app.route('/token_selection', methods=['POST'])
 def token_selection():
     token = request.form.get('token')
-    print(request.form)
-    
+    session['github_token'] = token  # Store the token in a session variable
+    print("Token set in session: " + session['github_token'])
     return f'Selected environment: {token}'
 
 
@@ -50,7 +58,10 @@ def token_selection():
 def create_github_repo():
     # Get the repo name and token from the form
     repo_name = request.form['repoName']
-    # token = request.form['token']
+    token = session.get('github_token')
+
+    if not token:
+        return "No GitHub token found. Please select a token first."
 
     response = gits_createrepo.create_github_repo(token, repo_name)
     print(response)
@@ -59,7 +70,6 @@ def create_github_repo():
         return "Repository created successfully!"
     else:
         return f"Error creating repository. Status code: {response.status_code}"
-
 
 @app.route('/clone_repo', methods=['POST'])
 def clone_repository():
@@ -76,6 +86,13 @@ def clone_repository():
 def delete_repository():
     user_name = request.form['userName']
     repo_name = request.form['repoName']
+    token = session.get('github_token')
+
+    if not token:
+        return "No GitHub token found. Please select a token first."
+
+    print("delete"+token)
+
     result = gits_delete.delete_github_repo(token, user_name, repo_name)
     if result.status_code == 204:
         return "Repository deleted successfully!"
@@ -87,6 +104,10 @@ def delete_repository():
 def fork_repository():
     user_name = request.form['userName']
     repo_name = request.form['repoName']
+    token = session.get('github_token')
+
+    if not token:
+        return "No GitHub token found. Please select a token first."
     result = gits_fork.fork_repo(user_name, repo_name, token)
     if result.status_code == 202:
         return "Repository forked successfully!"
@@ -99,6 +120,10 @@ def check_branch():
     user_name = request.form['userName']
     repo_name = request.form['repoName']
     branch_name = request.form['branchName']
+    token = session.get('github_token')
+
+    if not token:
+        return "No GitHub token found. Please select a token first."
     result = gits_checkbranch.check_branch_exists(token, user_name, repo_name, branch_name)
     if result.status_code == 200:
         return f"Branch {branch_name} in the {repo_name} exists!"
@@ -112,6 +137,10 @@ def create_branch():
     repo_name = request.form['repoName']
     base_branch = request.form['baseBranch']
     new_branch = request.form['newBranch']
+    token = session.get('github_token')
+
+    if not token:
+        return "No GitHub token found. Please select a token first."
     result = gits_createbranch.create_branch(user_name, repo_name, base_branch, new_branch, token)
     if result.status_code == 422:
         return f"Branch {new_branch} in the repo {repo_name} already exists!"
@@ -125,6 +154,10 @@ def create_branch():
 def get_branches():
     repo_owner = request.form['repoOwner']
     repo_name = request.form['repoName']
+    token = session.get('github_token')
+
+    if not token:
+        return "No GitHub token found. Please select a token first."
     result = gits_branch.get_github_branches(repo_owner, repo_name, token)
     if result.status_code == 200:
         return [branch['name'] for branch in result.json()]
@@ -163,6 +196,10 @@ def merge_branch():
     repo_owner = request.form['repoOwner']
     repo_name = request.form['repoName']
     branch_name = request.form['branchName']
+    token = session.get('github_token')
+
+    if not token:
+        return "No GitHub token found. Please select a token first."
     result = gits_merge.merge_github_branch(repo_owner, repo_name, branch_name, token)
     return result
 
@@ -188,6 +225,10 @@ def push():
     branch_name = request.form['branchName']
     filename = request.form['filename']
     commit_msg = request.form['commit_msg']
+    token = session.get('github_token')
+
+    if not token:
+        return "No GitHub token found. Please select a token first."
     result = gits_push.push(token,user_name, local_path, repo_name, branch_name, filename, commit_msg)
     if result.returncode == 0:
         return "Code pushed to the repository successfully!"
