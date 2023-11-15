@@ -1,4 +1,5 @@
 # GITS3.2
+
 ## Group30_Proj3
 
 [Setup - YouTube Link](https://www.youtube.com/watch?v=3JSH69fN-iU)  
@@ -23,6 +24,7 @@
 [![Style Checker and Prettify Code](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/Style_Checker_and_Prettify_Code.yml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/Style_Checker_and_Prettify_Code.yml)
 [![GitHub Actions](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/build_test.yaml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/build_test.yaml)
 [![Running Code Coverage](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/codecov.yml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/codecov.yml)
+
 <p align="center">
     <a href="https://github.com/Michaellzd/CSC510_Proj3/issues/new/choose">Report Bug</a>
 </p>
@@ -72,8 +74,8 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
    Case studies can be found [here](https://github.com/psvkaushik/Group50_Proj2/blob/main/docs/case_study.md)  
    Troubleshooting steps can be found [here](https://github.com/psvkaushik/Group50_Proj2/blob/main/docs/Troubleshooting_guide.md)
 
-
 ## 📝 Project 3(Score card and video!) </a>
+
 <span style="color:blue">[Project 3 Readme !](proj3/README.md)</span>
 
 # 🗺️Roadmap
@@ -82,6 +84,7 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
 - [x] Also made an executable to setup the project on command line for ease of use for the user
 - [x] Implemented a UI
 - [x] Provided feature to add custom commands and included instaructions on using template to create corressponding code
+- [x] GitHub token management
 - [x] Website without refresh
 - [ ] Host application on cloud
 - [ ] Containerize the application
@@ -94,14 +97,13 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
 4. Flask [link](https://flask.palletsprojects.com/en/3.0.x/installation/#python-version)
 5. PyYaml [linl](https://pypi.org/project/PyYAML/)
 
-
-
 ## 👥 Team Members <a name="TeamMember"></a>
+
 Group 30:
 
-Jack Hou	
+Jack Hou
 
-Zhendong Lu	
+Zhendong Lu
 
 Feng Wang
 
