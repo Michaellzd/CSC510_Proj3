@@ -2,7 +2,7 @@
 
 ## Group30_Proj3
 
- You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/start).
+You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/start).
 
 > You must accept Privacy Policy/EULA to continue.
 
@@ -12,7 +12,6 @@
 
 ![GitHub](https://img.shields.io/github/license/Michaellzd/CSC510_Proj3)
 [![codecov](https://codecov.io/gh/psvkaushik/Group50_Proj2/graph/badge.svg?token=3QCL57IUZF)](https://codecov.io/gh/psvkaushik/Group50_Proj2)
-
 
 [![DOI](https://zenodo.org/badge/713165921.svg)](https://zenodo.org/doi/10.5281/zenodo.10151676)
 
@@ -88,7 +87,6 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
 - [x] GitHub token management
 - [x] Website without refresh
 - [x] Host application on cloud
-
 
 ## 👥 Team Members <a name="TeamMember"></a>
 
