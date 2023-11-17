@@ -28,14 +28,4 @@ Edit the token value in app.py
 
 # How to use:
 
-Once the above setup is ready, navigate to the directory where repo has been cloned and enter following command:
-
-```
-% python app.py
-```
-
-![image](https://github.com/psvkaushik/Group50_Proj2/assets/111774368/41a0ec9f-c1e1-4433-ae84-5580a90cfe93)
-We can see that the webserver is working on port 5020 and it is using loopback address to host the web application on your local laptop
-Once you enter the (http://127.0.0.1:5020) on any web browser, it will open a homepage as below
-![image](https://github.com/psvkaushik/Group50_Proj2/assets/111774368/7582080b-be94-4b54-8fed-b99385c09ba0)
-You can click on the drop down and select the command you want to execute. Detailed explanation with execution for each command with example is given [here](https://github.com/psvkaushik/Group50_Proj2/tree/main/docs) and case studies has been given [here](https://github.com/psvkaushik/Group50_Proj2/blob/main/docs/case_study.md) for reference
+Input your token on the website
