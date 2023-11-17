@@ -1,6 +1,6 @@
 # Projects Assessment
 
-Total:79
+Total:82
 
 | Notes                                                                                                                                                   | self-assessment | evidence                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | :--------------------------------------------------- |
@@ -31,7 +31,7 @@ Total:79
 | Test cases: a large proportion of the issues related to handling failing cases.                                                                         | 2               | in GH                                                |
 | Evidence that the whole team is using the same tools: everyone can get to all tools and files                                                           | 3               |                                                      |
 | Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)                               | 3               | in GH                                                |
-| Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer) | 1               |                                                      |
+| Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer) | 3               |                                                      |
 | Evidence that the members of the team are working across multiple places in the code base                                                               | 3               | in GH                                                |
 | Short release cycles                                                                                                                                    | 3               | in GH                                                |
 
@@ -40,8 +40,8 @@ Total:79
 | Question                                                                                                                                             | Yes/No | Evidence                                       |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------- |
 | Does your website and documentation provide a clear, high-level overview of your software?                                                           | Yes    | in GH                                          |
-| Does your website and documentation clearly describe the type of user who should use your software?                                                  | Yes    | people want to buy a cheaper thing             |
-| Do you publish case studies to show how your software has been used by yourself and others?                                                          | No     |                                                |
+| Does your website and documentation clearly describe the type of user who should use your software?                                                  | Yes    |            |
+| Do you publish case studies to show how your software has been used by yourself and others?                                                          | Yes    |                                                |
 | Is the name of your project/software unique?                                                                                                         | Yes    |                                                |
 | Is your project/software name free from trademark violations?                                                                                        | Yes    |                                                |
 | Is your software available as a package that can be deployed without building it?                                                                    | Yes    |                                                |
@@ -78,7 +78,7 @@ Total:79
 | Can you build, or package, your software using an automated tool?                                                                                    | Yes    |                                                |
 | Do you provide publicly-available instructions for deploying your software?                                                                          | Yes    | in GH                                          |
 | Does your documentation list all third-party dependencies?                                                                                           | Yes    | in GH                                          |
-| Does your documentation list the version number for all third-party dependencies?                                                                    | No     | not all the third party dependencies           |
+| Does your documentation list the version number for all third-party dependencies?                                                                    | No     |            |
 | Does your software list the web address, and licences for all third-party dependencies and say whether the dependencies are mandatory or optional?   | Yes    | in GH, Readme.md shows all the info            |
 | Can you download dependencies using a dependency management tool or package manager?                                                                 | Yes    | python requirements                            |
 | Do you have tests that can be run after your software has been built or deployed to show whether the build or deployment has been successful?        | Yes    |                                                |
