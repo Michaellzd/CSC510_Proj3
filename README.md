@@ -2,8 +2,6 @@
 
 ## Group30_Proj3
 
-
-
 ### GITS3.2 - I.R.I.S (Ideal ReposItory for Software projects)
 
 ![GitHub](https://img.shields.io/github/license/Michaellzd/CSC510_Proj3)
