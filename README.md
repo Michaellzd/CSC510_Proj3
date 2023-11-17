@@ -76,8 +76,6 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
    Case studies can be found [here](https://github.com/Michaellzd/CSC510_Proj3/blob/main/docs/case_study.md)  
    Troubleshooting steps can be found [here](https://github.com/Michaellzd/CSC510_Proj3/main/docs/Troubleshooting_guide.md)
 
-
-
 # 🗺️Roadmap
 
 - [x] Initally , the software had separate implementaion for Linux, Windows or MAC . Now we have made sure the commands can be executed on all platforms without any dependancies
