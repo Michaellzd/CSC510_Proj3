@@ -2,11 +2,7 @@
 
 ## Group30_Proj3
 
-You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/start).
 
-> You must accept Privacy Policy/EULA to continue.
-
-[Tutorial - YouTube Link](https://www.youtube.com/watch?v=-QmI7xdJ0Zk)
 
 ### GITS3.2 - I.R.I.S (Ideal ReposItory for Software projects)
 
@@ -19,7 +15,7 @@ You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/sta
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/Michaellzd/CSC510_Proj3)](https://github.com/Michaellzd/CSC510_Proj3/issues?q=is%3Aissue+is%3Aclosed)
 ![Github pull requests](https://img.shields.io/github/issues-pr/psvkaushik/Group50_Proj2)
 [![GitHub stars](https://badgen.net/github/stars/psvkaushik/Group50_Proj2)](https://badgen.net/github/stars/Michaellzd/CSC510_Proj3)
-![version](https://img.shields.io/badge/version-4.1-blue)
+![version](https://img.shields.io/badge/version-1.1.0-blue)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Michaellzd/CSC510_Proj3)
 [![Style Checker and Prettify Code](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/Style_Checker_and_Prettify_Code.yml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/Style_Checker_and_Prettify_Code.yml)
 [![GitHub Actions](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/build_test.yaml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/build_test.yaml)
@@ -28,6 +24,12 @@ You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/sta
 <p align="center">
     <a href="https://github.com/Michaellzd/CSC510_Proj3/issues/new/choose">Report Bug</a>
 </p>
+
+You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/start).
+
+> You must accept Privacy Policy/EULA to continue.
+
+[Tutorial - YouTube Link](https://www.youtube.com/watch?v=-QmI7xdJ0Zk)
 
 ## 📝 Project 3(Score card and video!) </a>
 
