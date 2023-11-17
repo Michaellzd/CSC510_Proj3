@@ -40,7 +40,7 @@ Total:82
 | Question                                                                                                                                             | Yes/No | Evidence                                       |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------- |
 | Does your website and documentation provide a clear, high-level overview of your software?                                                           | Yes    | in GH                                          |
-| Does your website and documentation clearly describe the type of user who should use your software?                                                  | Yes    |            |
+| Does your website and documentation clearly describe the type of user who should use your software?                                                  | Yes    |                                                |
 | Do you publish case studies to show how your software has been used by yourself and others?                                                          | Yes    |                                                |
 | Is the name of your project/software unique?                                                                                                         | Yes    |                                                |
 | Is your project/software name free from trademark violations?                                                                                        | Yes    |                                                |
@@ -78,7 +78,7 @@ Total:82
 | Can you build, or package, your software using an automated tool?                                                                                    | Yes    |                                                |
 | Do you provide publicly-available instructions for deploying your software?                                                                          | Yes    | in GH                                          |
 | Does your documentation list all third-party dependencies?                                                                                           | Yes    | in GH                                          |
-| Does your documentation list the version number for all third-party dependencies?                                                                    | No     |            |
+| Does your documentation list the version number for all third-party dependencies?                                                                    | No     |                                                |
 | Does your software list the web address, and licences for all third-party dependencies and say whether the dependencies are mandatory or optional?   | Yes    | in GH, Readme.md shows all the info            |
 | Can you download dependencies using a dependency management tool or package manager?                                                                 | Yes    | python requirements                            |
 | Do you have tests that can be run after your software has been built or deployed to show whether the build or deployment has been successful?        | Yes    |                                                |
