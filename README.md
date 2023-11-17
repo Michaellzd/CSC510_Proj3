@@ -23,7 +23,7 @@
     <a href="https://github.com/Michaellzd/CSC510_Proj3/issues/new/choose">Report Bug</a>
 </p>
 
-You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/start).
+You can access this system by [https://csc510.obear.io/start](https://csc510.obear.io/start).
 
 > You must accept Privacy Policy/EULA to continue.
 
