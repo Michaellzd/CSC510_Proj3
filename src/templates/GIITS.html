@@ -56,6 +56,25 @@ this file. If not, please write to: gits3.1project@gmail.com
         box-sizing: border-box;
       }
       
+      #add-modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 40%;
+        max-width: 800px;
+        max-height: 80vh; 
+        overflow: auto;
+        box-sizing: border-box;
+      }
+      
+      
       .flexContainer {
         display: flex;
       }
@@ -252,36 +271,13 @@ this file. If not, please write to: gits3.1project@gmail.com
     <button class="button op-button" id="op-button" onclick = "openModal()">Manage</button>
     <br>
     
+    
+    
     <div class="overlay" id="overlay"></div>
     <div class="modal" id="modal">
       <span class="close-btn" onclick="closeModal()">&times;</span>
       <div class="title">Manage Tokens</div>
-      <div class="overlay" id="add-overlay"></div>
-      <div class="modal" id="add-modal">
-        <span class="close-btn" onclick="closeAddModal()">&times;</span>
-        <div class="title">Add Token</div>
-        <div id="form-add-token">
-          <form id="addToken">
-            <div class='flexContainer'>             
-              <label>Token</label>
-              <br>
-              <input type="text" id="token" name="token" required>
-            </div>
             
-            <div class='flexContainer'>             
-              <label for="alias">Alias</label>
-              <input type="text" id="alias" name="alias" required>
-            </div>
-            
-            <div class='flexContainer'>             
-              <label for="expiration">Expriation</label>
-              <input type="date" id="expiration" name="expiration" required>
-            </div>
-            <input type="submit" value="Submit">
-          </form>
-        </div>
-      </div>
-      
       <div class="overlay" id="delete-overlay"></div>
       <div class="modal" id="delete-modal">
         <span class="close-btn" onclick="closeDeleteModal()">&times;</span>
@@ -312,6 +308,7 @@ this file. If not, please write to: gits3.1project@gmail.com
         <div id="leftColumn">
           <h2>Token List</h2>
           <ul id="tokenList"></ul>
+          <ul id="tokenList"></ul>
           <div display=flex>
             <button class="button add-button" id="add_button" onclick="openAddModal()">Add</button>
             
@@ -323,6 +320,32 @@ this file. If not, please write to: gits3.1project@gmail.com
         </div>
       </div>
     </div>
+    <div class="overlay" id="add-overlay"></div>
+    <div class="modal" id="add-modal">
+      <span class="close-btn" onclick="closeAddModal()">&times;</span>
+      <div class="title">Add Token</div>
+      <div id="form-add-token">
+        <form id="addToken">
+          <div class='flexContainer'>             
+            <label>Token</label>
+            <br>
+            <input type="text" id="token" name="token" required>
+          </div>
+          
+          <div class='flexContainer'>             
+            <label for="alias">Alias</label>
+            <input type="text" id="alias" name="alias" required>
+          </div>
+          
+          <div class='flexContainer'>             
+            <label for="expiration">Expriation</label>
+            <input type="date" id="expiration" name="expiration" required>
+          </div>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+
     
     <label for="option">Select an option:</label>
     <br>
@@ -1010,9 +1033,10 @@ this file. If not, please write to: gits3.1project@gmail.com
         const today = new Date();
         if (expirationTime < today.getTime()) {
           tokenDetailsElement.innerHTML = `
-          <p><strong>This token has expired</strong></p>
+          <p><strong>This token has expired</strong></p> 
+          <p id="tokenId"><strong>Token:</strong> ${token.token}</p>
           <p><strong>Alias:</strong> ${token.alias}</p>
-          <p><strong>Expiration Time:</strong> ${expirationTime.toLocaleString()}</p>`;
+          <p><strong>Expiration Time:</strong> ${expirationTime.toLocaleString()}</p> <button class="button delete-button" onclick="deleteToken()" id="delete_button">Delete</button>`;
           
         } else {
           tokenDetailsElement.innerHTML = `

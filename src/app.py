@@ -246,5 +246,5 @@ def diff():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5021)
+    app.run(debug=False, port=80)
     
