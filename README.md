@@ -2,17 +2,20 @@
 
 ## Group30_Proj3
 
-**For a limited time, this app is deployed in a AWS server. You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/start).**
+ You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/start).
 
 > You must accept Privacy Policy/EULA to continue.
 
-[Tutorial - YouTube Link](https://www.youtube.com/watch?v=ESP3zT4LMaM)
+[Tutorial - YouTube Link](https://www.youtube.com/watch?v=-QmI7xdJ0Zk)
 
 ### GITS3.2 - I.R.I.S (Ideal ReposItory for Software projects)
 
 ![GitHub](https://img.shields.io/github/license/Michaellzd/CSC510_Proj3)
 [![codecov](https://codecov.io/gh/psvkaushik/Group50_Proj2/graph/badge.svg?token=3QCL57IUZF)](https://codecov.io/gh/psvkaushik/Group50_Proj2)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10023548.svg)](https://doi.org/10.5281/zenodo.10023548)
+
+
+[![DOI](https://zenodo.org/badge/713165921.svg)](https://zenodo.org/doi/10.5281/zenodo.10151676)
+
 [![GitHub issues](https://img.shields.io/github/issues/Michaellzd/CSC510_Proj3)](https://github.com/psvkaushik/Group50_Proj2/issues?q=is%3Aopen+is%3Aissue)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/Michaellzd/CSC510_Proj3)](https://github.com/Michaellzd/CSC510_Proj3/issues?q=is%3Aissue+is%3Aclosed)
 ![Github pull requests](https://img.shields.io/github/issues-pr/psvkaushik/Group50_Proj2)
@@ -84,16 +87,8 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
 - [x] Provided feature to add custom commands and included instaructions on using template to create corressponding code
 - [x] GitHub token management
 - [x] Website without refresh
-- [ ] Host application on cloud
-- [ ] Containerize the application
+- [x] Host application on cloud
 
-# Third Party Dependencies
-
-1. Git [link](https://github.com/git-guides/install-git)
-2. Python [link](https://www.python.org/downloads/)
-3. Requests [link](https://pypi.org/project/requests/)
-4. Flask [link](https://flask.palletsprojects.com/en/3.0.x/installation/#python-version)
-5. PyYaml [linl](https://pypi.org/project/PyYAML/)
 
 ## 👥 Team Members <a name="TeamMember"></a>
 
