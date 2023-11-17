@@ -56,48 +56,29 @@ this file. If not, please write to: gits3.1project@gmail.com
         box-sizing: border-box;
       }
       
-      #add-modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        width: 40%;
-        max-width: 800px;
-        max-height: 80vh; 
-        overflow: auto;
-        box-sizing: border-box;
-      }
-      
-      
       .flexContainer {
         display: flex;
       }
-      
+
       .close-btn {
         cursor: pointer;
         position: absolute;
         top: 10px;
         right: 10px;
       }
-           
+
       .title {
         font-size: 20px;
         font-weight: bolder;
         margin-bottom: 30px;
       }
-      
+
       h1 {
         font-size: 28px;
-        color: #007bff; 
+        color: #007bff;
         margin-bottom: 20px;
       }
-      
+
       #form-container-create,
       #form-container-clone,
       #form-container-fork,
@@ -114,28 +95,28 @@ this file. If not, please write to: gits3.1project@gmail.com
       #form-container-push {
         display: none;
       }
-      
+
       form {
         max-width: 300px;
         margin: 0 auto;
       }
-      
+
       label {
         display: block;
         margin-top: 5px;
         padding-left: 50px;
         padding-right: 50px;
         margin-bottom: 5px;
-        color: #555; 
+        color: #555;
       }
-      
+
       input {
         padding: 10px;
         margin-bottom: 16px;
         border: 1px solid #ccc;
         border-radius: 4px;
       }
-      
+
       input[type="submit"] {
         display: inline-block;
         padding: 10px 20px;
@@ -146,29 +127,29 @@ this file. If not, please write to: gits3.1project@gmail.com
         cursor: pointer;
         border: 2px solid #007aff;
         border-radius: 8px;
-        color: #007aff; 
+        color: #007aff;
         background-color: transparent;
         transition: background-color 0.3s, color 0.3s;
-      
+
       }
-      
-      input[type="submit"]:hover {        
+
+      input[type="submit"]:hover {
         background-color: #007aff;
         color: #fff;
       }
-      
+
       #leftColumn {
         width: 30%;
         background-color: #f0f0f0;
         padding: 20px;
         border-radius: 10px;
       }
-      
+
       #rightColumn {
         flex: 1;
         padding: 20px;
-        display: flex; 
-        flex-direction: column; 
+        display: flex;
+        flex-direction: column;
       }
 
       #tokenList {
@@ -176,7 +157,7 @@ this file. If not, please write to: gits3.1project@gmail.com
         padding: 0;
         margin: 0;
       }
-      
+
       #tokenList li {
         cursor: pointer;
         margin-bottom: 10px;
@@ -184,15 +165,15 @@ this file. If not, please write to: gits3.1project@gmail.com
         background-color: #e0e0e0;
         border-radius: 5px;
       }
-      
+
       #tokenList li:hover {
         background-color: #c0c0c0;
       }
-      
+
       #tokenDetails {
         font-size: 18px;
       }
-    
+
       .button {
         display: inline-block;
         padding: 10px 20px;
@@ -201,102 +182,125 @@ this file. If not, please write to: gits3.1project@gmail.com
         text-align: center;
         text-decoration: none;
         cursor: pointer;
-        border: 2px solid #007aff; 
-        border-radius: 8px; 
-        color: #007aff; 
+        border: 2px solid #007aff;
+        border-radius: 8px;
+        color: #007aff;
         background-color: transparent;
         transition: background-color 0.3s, color 0.3s;
       }
-      
+
       .add-button {
-        color: #4cd964; 
+        color: #4cd964;
         background-color: transparent;
         border: 2px solid #4cd964;
       }
-      
+
       .add-button:hover {
         background-color: #4cd964;
         color: #fff;
       }
-      
+
       .op-button {
         color: #007aff;
         background-color: transparent;
         border: 2px solid #007aff;
       }
-      
+
       .op-button:hover {
         background-color: #007aff;
         color: #fff;
       }
-      
+
       .delete-button {
-        color: #ff3b30; 
+        color: #ff3b30;
         background-color: transparent;
         border: 2px solid #ff3b30;
       }
-      
+
       .delete-button:hover {
         background-color: #ff3b30;
         color: #fff;
       }
     </style>
-    
-    
+
+
   </head>
-  
+
   <body>
-    
+
     <h1>GITS Homepage</h1>
-    
+
     <!-- Image container -->
-    
+
     <div id="image-container">
       <img src="{{ url_for('static', filename='image.gif') }}" alt="Animated GIF" width="450" height="300">
     </div>
-    
+
     <br>
-    
+
     <label for="option">Select a token:</label>
     <br>
-    
-    <form id="token_selection" action="/token_selection" method="post" onsubmit="submitForm(); return false;"> 
+
+    <form id="token_selection" action="/token_selection" method="post" onsubmit="submitForm(); return false;">
       <select id="tokenSelection" onchange="selectToken()">
         <option value="hidden">-- Select Token --</option>
       </select>
       <input type="hidden" id="selectedToken" name="selectedToken">
     </form>
-    
+
     <br>
     <button class="button op-button" id="op-button" onclick = "openModal()">Manage</button>
     <br>
-    
-    
-    
+
     <div class="overlay" id="overlay"></div>
     <div class="modal" id="modal">
       <span class="close-btn" onclick="closeModal()">&times;</span>
       <div class="title">Manage Tokens</div>
-            
+      <div class="overlay" id="add-overlay"></div>
+      <div class="modal" id="add-modal">
+        <span class="close-btn" onclick="closeAddModal()">&times;</span>
+        <div class="title">Add Token</div>
+        <div id="form-add-token">
+          <form id="addToken">
+            <div class='flexContainer'>
+              <label>Token</label>
+              <br>
+              <input type="text" id="token" name="token" required>
+            </div>
+
+            <div class='flexContainer'>
+              <label for="alias">Alias</label>
+              <input type="text" id="alias" name="alias" required>
+            </div>
+
+            <div class='flexContainer'>
+              <label for="expiration">Expriation</label>
+              <input type="date" id="expiration" name="expiration" required>
+            </div>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
+
       <div class="overlay" id="delete-overlay"></div>
       <div class="modal" id="delete-modal">
         <span class="close-btn" onclick="closeDeleteModal()">&times;</span>
         <div class="title">Add Token</div>
         <div id="form-add-token">
           <form id="addToken">
-            <div class='flexContainer'>             
+            <div class='flexContainer'>
               <label>Token</label>
               <br>
               <input type="text" id="token" name="token" required>
             </div>
-            
-            <div class='flexContainer'>             
+
+            <div class='flexContainer'>
               <label for="alias">Alias</label>
               <input type="text" id="alias" name="alias" required>
             </div>
-            
-            <div class='flexContainer'>             
-              <label for="expiration">Expriation</label>
+
+            <div class='flexContainer'>
+              <label for="expiration">Expiration</label>
               <input type="date" id="expiration" name="expiration" required>
             </div>
             <input type="submit" value="Submit">
@@ -308,10 +312,9 @@ this file. If not, please write to: gits3.1project@gmail.com
         <div id="leftColumn">
           <h2>Token List</h2>
           <ul id="tokenList"></ul>
-          <ul id="tokenList"></ul>
           <div display=flex>
             <button class="button add-button" id="add_button" onclick="openAddModal()">Add</button>
-            
+
           </div>
         </div>
         <div id="rightColumn">
@@ -320,36 +323,10 @@ this file. If not, please write to: gits3.1project@gmail.com
         </div>
       </div>
     </div>
-    <div class="overlay" id="add-overlay"></div>
-    <div class="modal" id="add-modal">
-      <span class="close-btn" onclick="closeAddModal()">&times;</span>
-      <div class="title">Add Token</div>
-      <div id="form-add-token">
-        <form id="addToken">
-          <div class='flexContainer'>             
-            <label>Token</label>
-            <br>
-            <input type="text" id="token" name="token" required>
-          </div>
-          
-          <div class='flexContainer'>             
-            <label for="alias">Alias</label>
-            <input type="text" id="alias" name="alias" required>
-          </div>
-          
-          <div class='flexContainer'>             
-            <label for="expiration">Expriation</label>
-            <input type="date" id="expiration" name="expiration" required>
-          </div>
-          <input type="submit" value="Submit">
-        </form>
-      </div>
-    </div>
 
-    
     <label for="option">Select an option:</label>
     <br>
-    
+
     <select id="option" onchange="toggleForm(this)">
       <option value="hidden">-- Select --</option>
       <option value="create_repo">Create Repo</option>
@@ -366,9 +343,9 @@ this file. If not, please write to: gits3.1project@gmail.com
       <option value="push">Push Diff</option>
       <option value="status">View Status</option>
       <option value="log">View Log</option>
-      
+
     </select>
-    
+
     <br> <br>
     <div id="form-container-create">
       <form action="/create_repo" method="post" >
@@ -382,183 +359,183 @@ this file. If not, please write to: gits3.1project@gmail.com
     <div id="success-message" style="display: none;"></div>
     <div id="failure-message" style="display: none;"></div>
 
-    
+
     <div id="form-container-commit_count">
       <form action="/commit_count" method="post">
         <label for="repoURL">Repository URL:</label>
         <input type="text" id="repoURL" name="repoURL" required><br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-status">
       <form action="/git_status" method="post">
         <label for="repoURL">Repository URL:</label>
         <input type="text" id="repoURL" name="repoURL" required><br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-log">
       <form action="/git_log" method="post">
         <label for="repoURL">Repository URL:</label>
         <input type="text" id="repoURL" name="repoURL" required><br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-clone">
       <form action="/clone_repo" method="post">
         <label for="repoURL">Repository URL:</label>
         <input type="text" id="repoURL" name="repoURL" required><br> <br>
-        
+
         <label for="destinationPath">Destination Path:</label>
         <input type="text" id="destinationPath" name="destinationPath" required><br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-delete">
       <form action="/delete_repo" method="post">
         <label for="userName">User Name:</label>
         <input type="text" id="userName" name="userName" required> <br> <br>
-        
+
         <label for="repoName">Repo Name:</label>
         <input type="text" id="repoName" name="repoName" required> <br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-get_branches">
       <form action="/get_branches" method="post">
         <label for="repoOwner">Repo Owner:</label>
         <input type="text" id="repoOwner" name="repoOwner" required> <br> <br>
-        
+
         <label for="repoName">Repo Name:</label>
         <input type="text" id="repoName" name="repoName" required> <br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-fork">
       <form action="/fork_repo" method="post">
         <label for="userName">Repo Owner:</label>
         <input type="text" id="userName" name="userName" required> <br> <br>
-        
+
         <label for="repoName">Repo Name:</label>
         <input type="text" id="repoName" name="repoName" required> <br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-check_branch">
       <form action="/check_branch" method="post">
         <label for="userName">Repo Owner:</label>
         <input type="text" id="userName" name="userName" required> <br> <br>
-        
+
         <label for="repoName">Repo Name:</label>
         <input type="text" id="repoName" name="repoName" required> <br> <br>
-        
+
         <label for="branchName">Branch Name:</label>
         <input type="text" id="branchName" name="branchName" required> <br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-create_branch">
       <form action="/create_branch" method="post">
         <label for="userName">User Name:</label>
         <input type="text" id="userName" name="userName" required> <br> <br>
-        
+
         <label for="repoName">Repo Name:</label>
         <input type="text" id="repoName" name="repoName" required> <br> <br>
-        
+
         <label for="baseBranch">Base Branch:</label>
         <input type="text" id="baseBranch" name="baseBranch" required> <br> <br>
-        
+
         <label for="newBranch">New Branch:</label>
         <input type="text" id="newBranch" name="newBranch" required> <br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-merge_branch">
       <form action="/merge_branch" method="post">
         <label for="repoOwner">User Name:</label>
         <input type="text" id="repoOwner" name="repoOwner" required> <br> <br>
-        
+
         <label for="repoName">Repo Name:</label>
         <input type="text" id="repoName" name="repoName" required> <br> <br>
-        
+
         <label for="branchName">Branch Name:</label>
         <input type="text" id="branchName" name="branchName" required> <br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-commit_diff">
       <form action="/commit_diff" method="post">
         <label for="localPath">Working Directory:</label>
         <input type="text" id="localPath" name="localPath" required> <br> <br>
-        
+
         <label for="branchName">Branch Name:</label>
         <input type="text" id="branchName" name="branchName" required> <br> <br>
-        
+
         <label for="filename">Filenames:</label>
         <input type="text" id="filename" name="filename" required> <br> <br>
-        
+
         <label for="commit_msg">Commit Message:</label>
         <input type="text" id="commit_msg" name="commit_msg" required> <br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-diff">
       <form action="/diff" method="post">
         <label for="repoOwner">User Name:</label>
         <input type="text" id="repoOwner" name="repoOwner" required> <br> <br>
-        
+
         <label for="repoName">Repo Name:</label>
         <input type="text" id="repoName" name="repoName" required> <br> <br>
-        
+
         <label for="branchName">Branch Name:</label>
         <input type="text" id="branchName" name="branchName" required> <br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
-    
+
     <div id="form-container-push">
       <form action="/push" method="post">
         <label for="userName">User Name:</label>
         <input type="text" id="userName" name="userName" required> <br> <br>
-        
+
         <label for="localPath">Working Directory:</label>
         <input type="text" id="localPath" name="localPath" required> <br> <br>
-        
+
         <label for="repoName">Repo Name:</label>
         <input type="text" id="repoName" name="repoName" required> <br> <br>
-        
+
         <label for="branchName">Branch Name:</label>
         <input type="text" id="branchName" name="branchName" required> <br> <br>
-        
+
         <label for="filename">Filenames:</label>
         <input type="text" id="filename" name="filename" required> <br> <br>
-        
+
         <label for="commit_msg">Commit Message:</label>
         <input type="text" id="commit_msg" name="commit_msg" required> <br> <br>
-        
+
         <input type="submit" value="Submit">
       </form>
     </div>
@@ -567,7 +544,7 @@ this file. If not, please write to: gits3.1project@gmail.com
 
 
     <script>
-      
+
       class Token {
         constructor(token, expirationTime, alias) {
           this.token = token;
@@ -575,41 +552,41 @@ this file. If not, please write to: gits3.1project@gmail.com
           this.alias = alias;
         }
       }
-      
+
       function saveTokensToLocalStorage(newTokens) {
         const existingTokensJSON = localStorage.getItem('tokens');
         const existingTokens = existingTokensJSON ? JSON.parse(existingTokensJSON) : [];
-        
+
         const allTokens = [...existingTokens, ...newTokens];
-        
+
         const serializedTokens = allTokens.map(token => ({
           token: token.token,
           expirationTime: token.expirationTime,
           alias: token.alias
         }));
-        
+
         localStorage.setItem('tokens', JSON.stringify(serializedTokens));
         console.log("Tokens added and saved to local storage");
       }
 
-      
-      
+
+
       function loadTokensFromLocalStorage() {
         const storedTokens = localStorage.getItem('tokens');
         const today = new Date();
-        
+
         const activeGroup = document.createElement('optgroup');
         activeGroup.label = 'Active Tokens';
-        
+
         const expiredGroup = document.createElement('optgroup');
         expiredGroup.label = 'Expired';
-        
+
         const selectElement = document.getElementById('tokenSelection');
         selectElement.innerHTML = '<option value="hidden">-- Select Token --</option>';
-        
+
         if (storedTokens) {
           const serializedTokens = JSON.parse(storedTokens);
-          
+
           serializedTokens.forEach(token => {
             const option = document.createElement('option');
             option.value = token.token;
@@ -624,12 +601,12 @@ this file. If not, please write to: gits3.1project@gmail.com
             }
             selectElement.appendChild(activeGroup);
             selectElement.appendChild(expiredGroup);
-            
+
           });
           return serializedTokens.map(token => new Token(token.token, token.expirationTime, token.alias));
         }
       }
-      
+
       // If you need an AJAX example, see here
       function selectToken() {
         const selectedToken = document.getElementById('tokenSelection').value;
@@ -663,7 +640,7 @@ this file. If not, please write to: gits3.1project@gmail.com
     failureMessage.text(message);
     failureMessage.show();
 }
-      
+
    /*function submitForm(event) {
     event.preventDefault();
 
@@ -922,7 +899,7 @@ this file. If not, please write to: gits3.1project@gmail.com
 });
 
 
-      
+
       function toggleForm(selectElement) {
         document.getElementById('form-container-create').style.display = 'none';
         document.getElementById('form-container-clone').style.display = 'none';
@@ -940,7 +917,7 @@ this file. If not, please write to: gits3.1project@gmail.com
         document.getElementById('form-container-push').style.display = 'none';
         document.getElementById('form-container-status').style.display = 'none';
         document.getElementById('form-container-log').style.display = 'none';
-        
+
         if (selectElement.value === 'create_repo') {
           document.getElementById('form-container-create').style.display = 'block';
         } else if (selectElement.value === 'clone_repo') {
@@ -971,24 +948,24 @@ this file. If not, please write to: gits3.1project@gmail.com
           document.getElementById('form-container-push').style.display = 'block';
         }
       }
-      
+
       function openModal() {
         loadTokensFromLocalStorage2();
         document.getElementById('overlay').style.display = 'block';
         document.getElementById('modal').style.display = 'block';
       }
-      
+
       function closeModal() {
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('modal').style.display = 'none';
       }
-      
+
       function openAddModal() {
         loadTokensFromLocalStorage2();
         document.getElementById('add-overlay').style.display = 'block';
         document.getElementById('add-modal').style.display = 'block';
       }
-      
+
       function closeAddModal() {
         loadTokensFromLocalStorage();
         document.getElementById('add-overlay').style.display = 'none';
@@ -997,16 +974,16 @@ this file. If not, please write to: gits3.1project@gmail.com
         closeModal();
         openModal();
       }
-      
+
       function loadTokensFromLocalStorage2() {
         const storedTokens = localStorage.getItem('tokens');
         if (storedTokens) {
           const serializedTokens = JSON.parse(storedTokens);
           const tokenListElement = document.getElementById('tokenList');
           tokenListElement.innerHTML = '';
-          
+
           const today = new Date();
-          
+
           serializedTokens.forEach(token => {
             console.log(token);
             const listItem = document.createElement('li');
@@ -1017,26 +994,25 @@ this file. If not, please write to: gits3.1project@gmail.com
               listItem.style.color = 'red'; // Mark expired options
               listItem.textContent = `[Expired] ${token.alias}`;
             }
-            
+
             listItem.addEventListener('click', () => displayTokenDetails(token));
             tokenListElement.appendChild(listItem);
           });
-          
+
           return serializedTokens.map(token => new Token(token.token, new Date(token.expirationTime), token.alias));
         }
         return [];
       }
-      
+
       function displayTokenDetails(token) {
         const tokenDetailsElement = document.getElementById('tokenDetails');
         const expirationTime = new Date(token.expirationTime);
         const today = new Date();
         if (expirationTime < today.getTime()) {
           tokenDetailsElement.innerHTML = `
-          <p><strong>This token has expired</strong></p> 
-          <p id="tokenId"><strong>Token:</strong> ${token.token}</p>
+          <p><strong>This token has expired</strong></p>
           <p><strong>Alias:</strong> ${token.alias}</p>
-          <p><strong>Expiration Time:</strong> ${expirationTime.toLocaleString()}</p> <button class="button delete-button" onclick="deleteToken()" id="delete_button">Delete</button>`;
+          <p><strong>Expiration Time:</strong> ${expirationTime.toLocaleString()}</p>`;
           
         } else {
           tokenDetailsElement.innerHTML = `
