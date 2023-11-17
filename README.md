@@ -2,6 +2,9 @@
 
 ## Group30_Proj3
 
+**For a limited time, this app is deployed in a AWS server. You can access it by [https://csc510.obear.io/start](https://csc510.obear.io/start).**
+>You must accept Privacy Policy/EULA to continue.
+
 [Setup - YouTube Link](https://www.youtube.com/watch?v=3JSH69fN-iU)  
 [Tutorial - YouTube Link](https://www.youtube.com/watch?v=ESP3zT4LMaM)
 
