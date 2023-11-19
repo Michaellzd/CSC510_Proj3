@@ -17,7 +17,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Michaellzd/CSC510_Proj3)
 [![Style Checker and Prettify Code](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/Style_Checker_and_Prettify_Code.yml/badge.svg)](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/Style_Checker_and_Prettify_Code.yml)
 [![GitHub Actions](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/build_test.yaml/badge.svg)](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/build_test.yaml)
-[![Running Code Coverage](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/codecov.yml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/codecov.yml)
+[![Running Code Coverage](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/codecov.yml/badge.svg)](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/codecov.yml)
 
 <p align="center">
     <a href="https://github.com/Michaellzd/CSC510_Proj3/issues/new/choose">Report Bug</a>
