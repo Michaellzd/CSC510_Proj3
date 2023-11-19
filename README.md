@@ -52,7 +52,7 @@ Here are few motivation points to come up with this idea
 2. While tackling an assignment for the course, we discovered a shortage of project repositories that follow a standardized structure.
 3. Developers might struggle to create projects that are easily transferable.
 
-# 🛠️ Installation Setup
+# 🛠️ Installation Setup(If you want to run in your local machine)
 
 1. Install the pre-requisites Python 3.9 or above from [here](https://www.python.org/downloads/) and Git from [here](https://git-scm.com/downloads).
 2. Open terminal and clone repository
