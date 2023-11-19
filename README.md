@@ -15,8 +15,8 @@
 [![GitHub stars](https://badgen.net/github/stars/psvkaushik/Group50_Proj2)](https://badgen.net/github/stars/Michaellzd/CSC510_Proj3)
 ![version](https://img.shields.io/badge/version-1.1.0-blue)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Michaellzd/CSC510_Proj3)
-[![Style Checker and Prettify Code](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/Style_Checker_and_Prettify_Code.yml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/Style_Checker_and_Prettify_Code.yml)
-[![GitHub Actions](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/build_test.yaml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/build_test.yaml)
+[![Style Checker and Prettify Code](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/Style_Checker_and_Prettify_Code.yml/badge.svg)](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/Style_Checker_and_Prettify_Code.yml)
+[![GitHub Actions](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/build_test.yaml/badge.svg)](https://github.com/Michaellzd/CSC510_Proj3/actions/workflows/build_test.yaml)
 [![Running Code Coverage](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/codecov.yml/badge.svg)](https://github.com/psvkaushik/Group50_Proj2/actions/workflows/codecov.yml)
 
 <p align="center">
