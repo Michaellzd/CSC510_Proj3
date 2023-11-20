@@ -1,9 +1,0 @@
-cff-version: 1.1.0
-message: "If you use this software, please cite it as below."
-authors:
-- family-names: College Dept Sub Group
-  given-names: NCSU CSE SE 50
-orcid: "https://orcid.org/0000-0000-0000-0000"
-title: "GITS 3.1"
-version: v4.0
-date-released: 2023-10-19
