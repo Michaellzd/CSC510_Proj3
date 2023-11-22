@@ -77,7 +77,7 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
    ```
    Quick start guide can be found [here](https://github.com/Michaellzd/CSC510_Proj3/blob/main/docs/Quick_start_guide.md)\
    Case studies can be found [here](https://github.com/Michaellzd/CSC510_Proj3/blob/main/docs/case_study.md)  
-   Troubleshooting steps can be found [here](https://github.com/Michaellzd/CSC510_Proj3/main/docs/Troubleshooting_guide.md)
+   Troubleshooting steps can be found [here](https://github.com/Michaellzd/CSC510_Proj3/blob/main/docs/Troubleshooting_guide.md)
 
 # 🗺️Roadmap
 
