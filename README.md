@@ -29,8 +29,6 @@ You can access this system by [https://csc510.obear.io/start](https://csc510.obe
 
 [Tutorial - YouTube Link](https://www.youtube.com/watch?v=-QmI7xdJ0Zk)
 
-
-
 # 🧐 About GITS3.2
 
 "Your repo is your resume. But what is a good looking repo?"
