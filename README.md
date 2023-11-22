@@ -29,9 +29,7 @@ You can access this system by [https://csc510.obear.io/start](https://csc510.obe
 
 [Tutorial - YouTube Link](https://www.youtube.com/watch?v=-QmI7xdJ0Zk)
 
-## 📝 Project 3(Score card and video!) </a>
 
-<span style="color:blue">[Project 3 Readme !](proj3/README.md)</span>
 
 # 🧐 About GITS3.2
 
