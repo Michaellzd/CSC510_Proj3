@@ -84,7 +84,7 @@ Detail about generating token is given [here](https://docs.github.com/en/authent
 - [x] Website without refresh
 - [x] Host application on cloud
 
-##  📓Project 3(Score card and video!) </a>
+## 📓Project 3(Score card and video!) </a>
 
 <span style="color:blue">[Project 3 Readme !](proj3/README.md)</span>
 
