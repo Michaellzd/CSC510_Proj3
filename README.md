@@ -27,7 +27,7 @@ You can access this system by [https://csc510.obear.io/start](https://csc510.obe
 
 > You must accept Privacy Policy/EULA to continue.
 
-[Tutorial - YouTube Link](https://www.youtube.com/watch?v=-QmI7xdJ0Zk)
+[Video - YouTube Link](https://www.youtube.com/watch?v=-QmI7xdJ0Zk)
 
 # 🧐 About GITS3.2
 
